@@ -93,6 +93,7 @@ do
 done
 echo -n -e " Done!"
 echo
+sleep 1
 
 # Deletes all of the 1Kb files
 echo "Deleting small files"
@@ -117,6 +118,7 @@ echo
 
 # Check fragmentation status
 sudo e2fsck -fn $device
+echo
 
 # Pause and wait for user input
 read -p "Press [Enter] to test read speed..."
@@ -128,4 +130,4 @@ sleep 1
 
 # Run read speed test
 time dd if=$mount_point/huge.txt of=/dev/null bs=1K
-
+echo

@@ -25,7 +25,7 @@
 # ======================================================
 
 i=0
-k=1
+j=1
 nine_kb=""
 one_kb=""
 mount_point="/media/william/flshd"
@@ -103,15 +103,15 @@ echo
 
 # Writes alternating 9Kb and 1Kb files
 echo "Writing files to "$mount_point
-while [ $k -le 10785 ]
+while [ $j -le 10785 ]
 do
-	if [ `echo "$k % 719" | bc` -eq 0 ]
+	if [ `echo "$j % 719" | bc` -eq 0 ]
 	then
 		echo -n -e "."
 	fi
-	echo $nine_kb > $mount_point"/large_"$k".txt"
-	echo $one_kb > $mount_point"/small_"$k".txt"
-	k=$[$k+1]
+	echo $nine_kb > $mount_point"/large_"$j".txt"
+	echo $one_kb > $mount_point"/small_"$j".txt"
+	j=$[$j+1]
 done
 echo -n -e " Done!"
 echo

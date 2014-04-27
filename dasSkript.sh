@@ -52,6 +52,7 @@ sleep 1
 
 # Format the flash drive to ext4
 sudo mkfs.ext4 $device
+echo
 sleep 1
 
 # Mount the flash drive

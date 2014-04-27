@@ -24,12 +24,12 @@
 # Prep for the experiment
 # ======================================================
 
-i=0
-j=1
+readonly mount_point="/media/william/flshd"
+readonly device="/dev/sdc1"
 nine_kb=""
 one_kb=""
-mount_point="/media/william/flshd"
-device="/dev/sdc1"
+i=0
+j=1
 
 # Creates content for 9Kb and 1K files
 while [ $i -lt 9000 ]

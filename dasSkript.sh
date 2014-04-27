@@ -24,8 +24,8 @@
 # Prep for the experiment
 # ======================================================
 
-readonly mount_point="/media/william/flshd"
-readonly device="/dev/sdc1"
+readonly MOUNT_POINT="/media/william/flshd"
+readonly DEVICE="/dev/sdc1"
 nine_kb=""
 one_kb=""
 i=0
@@ -47,17 +47,17 @@ echo "Formatting flash drive to ext4..."
 echo
 
 # Unmount the flash drive
-sudo umount $mount_point
+sudo umount $MOUNT_POINT
 sleep 1
 
 # Format the flash drive to ext4
-sudo mkfs.ext4 $device
+sudo mkfs.ext4 $DEVICE
 echo
 sleep 1
 
 # Mount the flash drive
-sudo mount $device $mount_point
-sudo chown william:william $mount_point
+sudo mount $DEVICE $MOUNT_POINT
+sudo chown william:william $MOUNT_POINT
 sleep 1
 
 
@@ -67,14 +67,14 @@ sleep 1
 
 # Copying huge.txt to freshly formatted flash drive
 # (used for pre-fragmentation read test)
-cp ./huge.txt $mount_point"/"
+cp ./huge.txt $MOUNT_POINT"/"
 
 # Pause and wait for user input
 read -p "Press [Enter] to test fragmentation status..."
 echo
 
 # Check fragmentation status
-sudo e2fsck -fn $device
+sudo e2fsck -fn $DEVICE
 echo
 
 # Pause and wait for user input
@@ -86,11 +86,11 @@ sudo /sbin/sysctl vm.drop_caches=3
 sleep 1
 
 # Run read speed test
-time dd if=$mount_point/huge.txt of=/dev/null bs=1K
+time dd if=$MOUNT_POINT/huge.txt of=/dev/null bs=1K
 sleep 1
 
 # Remove huge.txt
-rm $mount_point/huge.txt
+rm $MOUNT_POINT/huge.txt
 echo
 
 # Pause and wait for user input
@@ -103,15 +103,15 @@ echo
 # ======================================================
 
 # Writes alternating 9Kb and 1Kb files
-echo "Writing files to "$mount_point
+echo "Writing files to "$MOUNT_POINT
 while [ $j -le 10785 ]
 do
 	if [ `echo "$j % 719" | bc` -eq 0 ]
 	then
 		echo -n -e "."
 	fi
-	echo $nine_kb > $mount_point"/large_"$j".txt"
-	echo $one_kb > $mount_point"/small_"$j".txt"
+	echo $nine_kb > $MOUNT_POINT"/large_"$j".txt"
+	echo $one_kb > $MOUNT_POINT"/small_"$j".txt"
 	j=$[$j+1]
 done
 echo -n -e " Done!"
@@ -120,14 +120,14 @@ sleep 1
 
 # Deletes all of the 1Kb files
 echo "Deleting small files"
-rm $mount_point/*small*.txt
+rm $MOUNT_POINT/*small*.txt
 
 # A brief pause to ensure all files delete properly
 sleep 2
 
 # Copies huge.txt to flash drive
 echo "Copying huge.txt (should fragment on write)"
-cp ./huge.txt $mount_point"/"
+cp ./huge.txt $MOUNT_POINT"/"
 echo
 
 
@@ -140,7 +140,7 @@ read -p "Press [Enter] to test fragmentation status..."
 echo
 
 # Check fragmentation status
-sudo e2fsck -fn $device
+sudo e2fsck -fn $DEVICE
 echo
 
 # Pause and wait for user input
@@ -152,5 +152,5 @@ sudo /sbin/sysctl vm.drop_caches=3
 sleep 1
 
 # Run read speed test
-time dd if=$mount_point/huge.txt of=/dev/null bs=1K
+time dd if=$MOUNT_POINT/huge.txt of=/dev/null bs=1K
 echo

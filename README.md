@@ -1,5 +1,4 @@
-frag_test
-=========
+#Fragmentation Test
 
 This script is used to test the effect of fragmentation
 on read speed for a flash drive using a ext4 file system.

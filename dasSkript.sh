@@ -22,6 +22,7 @@
 # TO DO:
 #   1.  modularize w/ functions
 #   2.  change echo calls to printf
+#   3.  have user enter mount point and device path
 
 
 # ======================================================
@@ -36,7 +37,7 @@ i=0
 j=1
 
 # Creates content for 9Kb and 1K files
-while [ $i -lt 9000 ]
+while [ "$i" -lt 9000 ]
 do
     nine_kb+="."
     if [ "$i" -eq 1000 ]

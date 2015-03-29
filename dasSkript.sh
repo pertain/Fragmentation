@@ -34,12 +34,12 @@ j=1
 # Creates content for 9Kb and 1K files
 while [ $i -lt 9000 ]
 do
-	nine_kb+="."
-	if [ $i -eq 1000 ]
-	then
-		one_kb=$nine_kb
-	fi
-	i=$[$i+1]
+    nine_kb+="."
+    if [ $i -eq 1000 ]
+    then
+        one_kb=$nine_kb
+    fi
+    i=$[$i+1]
 done
 echo
 
@@ -106,13 +106,13 @@ echo
 echo "Writing files to "$MOUNT_POINT
 while [ $j -le 10785 ]
 do
-	if [ `echo "$j % 719" | bc` -eq 0 ]
-	then
-		echo -n -e "."
-	fi
-	echo $nine_kb > $MOUNT_POINT"/large_"$j".txt"
-	echo $one_kb > $MOUNT_POINT"/small_"$j".txt"
-	j=$[$j+1]
+    if [ `echo "$j % 719" | bc` -eq 0 ]
+    then
+        echo -n -e "."
+    fi
+    echo $nine_kb > $MOUNT_POINT"/large_"$j".txt"
+    echo $one_kb > $MOUNT_POINT"/small_"$j".txt"
+    j=$[$j+1]
 done
 echo -n -e " Done!"
 echo

@@ -19,7 +19,7 @@
 # and read speed of the flash drive (both before and after
 # it has been fragmented).
 
-# TO DO:
+# TODO:
 #   1.  modularize w/ functions
 #   2.  change echo calls to printf
 #   3.  have user enter mount point and device path
